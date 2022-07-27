@@ -23,8 +23,6 @@ def lista_curso(self):
     return render(self, "lista_cursos.html" ,{"lista_cursos": lista})
 
 
-
-
 def inicio(self):
     return render(self, "inicio.html")
     
