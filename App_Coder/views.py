@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from App_Coder.forms import CursoFormulario
 
 from App_Coder.models import Curso
+
+
 
 # Create your views here.
 
@@ -42,3 +45,45 @@ def entregables(self):
 
 
 
+# def cursoFormulario(request):
+#     print('method:', request.method)
+#     print('post:', request.POST)
+
+#     if request.method == 'POST':
+
+#         curso = Curso(nombre=request.POST['curso'], camada=request.POST['camada'])
+#         curso.save()
+
+#         return render(request, 'inicio.html')
+
+#     return render(request, "cursoFormulario.html")
+
+def cursoFormulario(request):
+    print('method:', request.method)
+    print('post:', request.POST)
+
+    if request.method == 'POST':
+        
+        miFormulario = CursoFormulario(request.POST)
+
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data  #guarda datos en la basededatos
+
+        curso = Curso(nombre=data['curso'], camada=data['camada'])
+        curso.save()
+        return render(request, 'inicio.html')
+
+    else:
+        miFormulario = CursoFormulario()
+
+
+    return render(request, "cursoFormulario.html", {"miFormulario": miFormulario})
+
+
+def busquedaCamada(request):
+
+    return render(request, 'busquedaCamada.html')
+
+def buscar(request):
+
+    return HttpResponse(f'Estoy buscando la camada: {request.GET["camada"]}')

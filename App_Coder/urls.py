@@ -1,6 +1,6 @@
 from django.urls import path
 
-from App_Coder.views import curso, cursos, entregables, estudiante, inicio, lista_curso, profesores
+from App_Coder.views import buscar, curso, cursoFormulario, cursos, entregables, estudiante, inicio, lista_curso, profesores, busquedaCamada
 
 
 urlpatterns = [
@@ -11,5 +11,7 @@ urlpatterns = [
     path('estudiantes/', estudiante, name="Estudiantes"),
     path('profesores/', profesores, name="Profesores"),
     path('entregables/', entregables, name="Entregables"),
-    
+    path('cursoFormulario/', cursoFormulario, name="CursoFormulario"),
+    path('busquedaCamada/', busquedaCamada, name="BusquedaCamada"),
+    path('buscar/', buscar, name="Buscar"),
 ]
